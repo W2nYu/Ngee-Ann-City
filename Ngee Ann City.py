@@ -1,9 +1,9 @@
 #Function(s) to start game
-def StartGame():
+def start_game():
     pass
 
 #Functions(s) to build a building in game
-def BuildBuilding():
+def build_building():
     pass
 
 
