@@ -1,6 +1,7 @@
 
 def new_game():
     print('test new_game')
+    # addition to this thing
     pass
 
 
@@ -14,4 +15,3 @@ if __name__ == "__main__":
         break
 
         # If statements to execute functions based on choice
-        # ballz
