@@ -18,6 +18,24 @@ def build_building():
     pass
 
 def show_grid():
+    print('     A     B     C     D     E     F     G     H     I     J     K     L     M     N     O     P     Q     R     S     T')
+    grid_row = len((grid)[1])
+    grid_col = len(grid)
+    print('  ', end='')
+    for column in range(grid_col):
+        print('+-----', end='')
+        print('+')
+        i = 1
+    for row in range(grid_row):
+        print(' {}'.format(i), end='')
+        i += 1
+        for column in grid[row]:
+            print('| {} '.format(column), end='')
+            print('|')
+            print('  ', end='')
+        for column in range(grid_row):
+            print('+-----', end='')
+            print('+')
     pass
 
 if __name__ == "__main__":
