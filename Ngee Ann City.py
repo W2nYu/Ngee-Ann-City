@@ -1,15 +1,37 @@
-def new_game(coins):
-    while coins != 0:
-        show_grid()
-        print('1. Build building')
-        print('2. See current score')
-        print('3. Exit')
+from os import system, name
+# QOL functions
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
 
-        menu_choice = input("Choice: ")
+def range_char(start, stop):
+    return (chr(n) for n in range(ord(start), ord(stop) + 1))
+
+
+def new_game(grid, coins):
+    while coins != 0:
+        clear()
+        print()
+        show_grid(grid)
+        print()
+        print('1. Build building')
+        print('2. See coins')
+        print('0. Exit to main menu')
+
+        menu_choice = input("Enter choice: ")
 
         if menu_choice == "1":
             build_building()
         elif menu_choice == "2":
+            pass
+        elif menu_choice == "3":
+            break
+        elif menu_choice == "0":
+            break
+        else:
+            print("Invalid choice")
 
 
 
@@ -17,25 +39,35 @@ def new_game(coins):
 def build_building():
     pass
 
-def show_grid():
-    print('     A     B     C     D     E     F     G     H     I     J     K     L     M     N     O     P     Q     R     S     T')
-    grid_row = len((grid)[1])
-    grid_col = len(grid)
-    print('  ', end='')
-    for column in range(grid_col):
+def show_grid(grid):
+    grid_len = len(grid)  # assuming that the grid is a square
+
+    print(' ', end='')
+    for alphabet in range_char ("A", "T"):
+        print('     {}'.format(alphabet), end='')
+    print()
+
+    print('   ', end='')  # printing 2 space to align with row numbering
+    for col in range(grid_len):
         print('+-----', end='')
-        print('+')
-        i = 1
-    for row in range(grid_row):
-        print(' {}'.format(i), end='')
-        i += 1
-        for column in grid[row]:
-            print('| {} '.format(column), end='')
-            print('|')
-            print('  ', end='')
-        for column in range(grid_row):
+    print('+')
+
+    row_num = 1
+    for row in range(grid_len):
+        if row_num < 10:
+            print(' ', end='')  # printing 1 space for numbers < 10
+        print(' {}'.format(row_num), end='')
+        row_num += 1
+
+        # show the grid with buildings
+        for col in grid[row]:
+            print('| {} '.format(col), end='')
+        print('|')
+
+        print('   ', end='')  # printing 2 space to align with row numbering
+        for column in range(grid_len):
             print('+-----', end='')
-            print('+')
+        print('+')
     pass
 
 if __name__ == "__main__":
@@ -45,9 +77,31 @@ if __name__ == "__main__":
         grid = [["   " for col in range(grid_size)] for row in range(grid_size)]
         coins = 16
 
-        print()
+        clear()
         # Print statement to display the menu and prompt user for choice
-        new_game()
-        break
+        print("""
+$$\   $$\  $$$$$$\  $$$$$$$$\ $$$$$$$$\        $$$$$$\  $$\   $$\ $$\   $$\        $$$$$$\  $$$$$$\ $$$$$$$$\ $$\     $$\ 
+$$$\  $$ |$$  __$$\ $$  _____|$$  _____|      $$  __$$\ $$$\  $$ |$$$\  $$ |      $$  __$$\ \_$$  _|\__$$  __|\$$\   $$  |
+$$$$\ $$ |$$ /  \__|$$ |      $$ |            $$ /  $$ |$$$$\ $$ |$$$$\ $$ |      $$ /  \__|  $$ |     $$ |    \$$\ $$  / 
+$$ $$\$$ |$$ |$$$$\ $$$$$\    $$$$$\          $$$$$$$$ |$$ $$\$$ |$$ $$\$$ |      $$ |        $$ |     $$ |     \$$$$  /  
+$$ \$$$$ |$$ |\_$$ |$$  __|   $$  __|         $$  __$$ |$$ \$$$$ |$$ \$$$$ |      $$ |        $$ |     $$ |      \$$  /   
+$$ |\$$$ |$$ |  $$ |$$ |      $$ |            $$ |  $$ |$$ |\$$$ |$$ |\$$$ |      $$ |  $$\   $$ |     $$ |       $$ |    
+$$ | \$$ |\$$$$$$  |$$$$$$$$\ $$$$$$$$\       $$ |  $$ |$$ | \$$ |$$ | \$$ |      \$$$$$$  |$$$$$$\    $$ |       $$ |    
+\__|  \__| \______/ \________|\________|      \__|  \__|\__|  \__|\__|  \__|       \______/ \______|   \__|       \__|    """)
+        print()
+        print("Welcome to Ngee Ann City!")
+        print("1. Start game")
+        print("2. <something>")
+        print("3. <something>")
+        print()
+        print("0. Exit")
 
-        # If statements to execute functions based on choice
+        menu_input = input("Choice: ")
+
+        if menu_input == "1":
+            new_game(grid, coins)
+        elif menu_input == "0":
+            print()
+            break
+        else:
+            print("wrong input")
