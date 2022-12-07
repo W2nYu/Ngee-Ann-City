@@ -1,18 +1,9 @@
-from os import system, name
-# QOL functions
-def clear():
-    if name == 'nt':
-        _ = system('cls')
-    else:
-        _ = system('clear')
-
 def range_char(start, stop):
     return (chr(n) for n in range(ord(start), ord(stop) + 1))
 
 
 def new_game(grid, coins):
     while coins != 0:
-        clear()
         print()
         show_grid(grid)
         print()
@@ -20,6 +11,7 @@ def new_game(grid, coins):
         print('2. See coins')
         print('0. Exit to main menu')
 
+        print()
         menu_choice = input("Enter choice: ")
 
         if menu_choice == "1":
@@ -31,19 +23,18 @@ def new_game(grid, coins):
         elif menu_choice == "0":
             break
         else:
-            print("Invalid choice")
-
-
+            print('Invalid choice. Please try again.')
 
 
 def build_building():
     pass
 
+
 def show_grid(grid):
     grid_len = len(grid)  # assuming that the grid is a square
 
     print(' ', end='')
-    for alphabet in range_char ("A", "T"):
+    for alphabet in range_char("A", "T"):
         print('     {}'.format(alphabet), end='')
     print()
 
@@ -70,6 +61,7 @@ def show_grid(grid):
         print('+')
     pass
 
+
 if __name__ == "__main__":
     while True:
         # Global variable initialisation and setting
@@ -77,7 +69,6 @@ if __name__ == "__main__":
         grid = [["   " for col in range(grid_size)] for row in range(grid_size)]
         coins = 16
 
-        clear()
         # Print statement to display the menu and prompt user for choice
         print("""
 $$\   $$\  $$$$$$\  $$$$$$$$\ $$$$$$$$\        $$$$$$\  $$\   $$\ $$\   $$\        $$$$$$\  $$$$$$\ $$$$$$$$\ $$\     $$\ 
