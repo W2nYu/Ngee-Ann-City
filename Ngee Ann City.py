@@ -1,7 +1,6 @@
 def range_char(start, stop):
     return (chr(n) for n in range(ord(start), ord(stop) + 1))
 
-
 def new_game(grid, coins):
     while coins != 0:
         print()
@@ -25,10 +24,8 @@ def new_game(grid, coins):
         else:
             print('Invalid choice. Please try again.')
 
-
 def build_building():
     pass
-
 
 def show_grid(grid):
     grid_len = len(grid)  # assuming that the grid is a square
