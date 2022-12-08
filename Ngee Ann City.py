@@ -2,30 +2,40 @@
 import random
 
 #Function(s) to start game
-def start_game():
-    pass
-
 def range_char(start, stop):
     return (chr(n) for n in range(ord(start), ord(stop) + 1))
 
 def new_game(grid, coins):
     while coins != 0:
+        #Randomly selected buildings to play game with
+        choice1 = rand_pool(building_list)
+        choice2 = rand_pool(building_list)
+
+        #Print grid and new_game option
         print()
         show_grid(grid)
         print()
-        print('1. Build building')
-        print('2. See coins')
+        print('1. Build a {}'.format(choice1))
+        print('2. Build a {}'.format(choice2))
+        print('3. See coins')
+        print('4. See current score')
+        print('5. Save current game')
         print('0. Exit to main menu')
 
         print()
         menu_choice = input("Enter choice: ")
 
+        #If statement to 
         if menu_choice == "1":
-            build_building()
-        elif menu_choice == "2":
-            pass
+            build_building(grid, choice1, turns)
+        if menu_choice == "2":
+            build_building(grid, choice2, turns)
         elif menu_choice == "3":
-            break
+            print("Amount of coins remainding: {}".format(coins) )
+        elif menu_choice == "4":
+            print("See current score feature is currently not available")   
+        elif menu_choice == "5":
+            print("Save game feature is currently not available")   
         elif menu_choice == "0":
             break
         else:
@@ -82,6 +92,12 @@ def build_building(grid, build_choice, turns):
         else:
             print("Please re-enter a valid plot :)")
 
+def rand_pool(pool_list):  
+  while True:
+    randInt = random.randint(0,4)
+    return pool_list[randInt]
+
+#Function to show grid
 def show_grid(grid):
     grid_len = len(grid)  # assuming that the grid is a square
 
@@ -113,25 +129,29 @@ def show_grid(grid):
         print('+')
     pass
 
+
+#Main code 
 if __name__ == "__main__":
     while True:
         #Global variable initialisation and setting
         grid_size = 20
         grid = [["   "for col in range(grid_size)]for row in range(grid_size)]
-        building_list = ['R', 'I', 'C', 'O', '*']
+        building_list = [' R ', ' I ', ' C ', ' O ', ' * ']
         turns = 0
         coins = 16
         
         #Print statement to display the menu and prompt user for choices
         print("""
-$$\   $$\  $$$$$$\  $$$$$$$$\ $$$$$$$$\        $$$$$$\  $$\   $$\ $$\   $$\        $$$$$$\  $$$$$$\ $$$$$$$$\ $$\     $$\ 
-$$$\  $$ |$$  __$$\ $$  _____|$$  _____|      $$  __$$\ $$$\  $$ |$$$\  $$ |      $$  __$$\ \_$$  _|\__$$  __|\$$\   $$  |
-$$$$\ $$ |$$ /  \__|$$ |      $$ |            $$ /  $$ |$$$$\ $$ |$$$$\ $$ |      $$ /  \__|  $$ |     $$ |    \$$\ $$  / 
-$$ $$\$$ |$$ |$$$$\ $$$$$\    $$$$$\          $$$$$$$$ |$$ $$\$$ |$$ $$\$$ |      $$ |        $$ |     $$ |     \$$$$  /  
-$$ \$$$$ |$$ |\_$$ |$$  __|   $$  __|         $$  __$$ |$$ \$$$$ |$$ \$$$$ |      $$ |        $$ |     $$ |      \$$  /   
-$$ |\$$$ |$$ |  $$ |$$ |      $$ |            $$ |  $$ |$$ |\$$$ |$$ |\$$$ |      $$ |  $$\   $$ |     $$ |       $$ |    
-$$ | \$$ |\$$$$$$  |$$$$$$$$\ $$$$$$$$\       $$ |  $$ |$$ | \$$ |$$ | \$$ |      \$$$$$$  |$$$$$$\    $$ |       $$ |    
-\__|  \__| \______/ \________|\________|      \__|  \__|\__|  \__|\__|  \__|       \______/ \______|   \__|       \__|    """)
+                $$\   $$\  $$$$$$\  $$$$$$$$\ $$$$$$$$\        $$$$$$\  $$\   $$\ $$\   $$\        $$$$$$\  $$$$$$\ $$$$$$$$\ $$\     $$\ 
+                $$$\  $$ |$$  __$$\ $$  _____|$$  _____|      $$  __$$\ $$$\  $$ |$$$\  $$ |      $$  __$$\ \_$$  _|\__$$  __|\$$\   $$  |
+                $$$$\ $$ |$$ /  \__|$$ |      $$ |            $$ /  $$ |$$$$\ $$ |$$$$\ $$ |      $$ /  \__|  $$ |     $$ |    \$$\ $$  / 
+                $$ $$\$$ |$$ |$$$$\ $$$$$\    $$$$$\          $$$$$$$$ |$$ $$\$$ |$$ $$\$$ |      $$ |        $$ |     $$ |     \$$$$  /  
+                $$ \$$$$ |$$ |\_$$ |$$  __|   $$  __|         $$  __$$ |$$ \$$$$ |$$ \$$$$ |      $$ |        $$ |     $$ |      \$$  /   
+                $$ |\$$$ |$$ |  $$ |$$ |      $$ |            $$ |  $$ |$$ |\$$$ |$$ |\$$$ |      $$ |  $$\   $$ |     $$ |       $$ |    
+                $$ | \$$ |\$$$$$$  |$$$$$$$$\ $$$$$$$$\       $$ |  $$ |$$ | \$$ |$$ | \$$ |      \$$$$$$  |$$$$$$\    $$ |       $$ |    
+                \__|  \__| \______/ \________|\________|      \__|  \__|\__|  \__|\__|  \__|       \______/ \______|   \__|       \__|    """)
+        print("\n \n \n")
+
         print("Welcome mayor of Ngee Ann City!")
         print("---------------------------")
         print("1. Start new game")
@@ -145,11 +165,11 @@ $$ | \$$ |\$$$$$$  |$$$$$$$$\ $$$$$$$$\       $$ |  $$ |$$ | \$$ |$$ | \$$ |    
         if option:
             option = int(option)
             if option == 1:
-                print(grid)
+                new_game(grid, coins)
             elif option == 2:
-                pass
+                print("Load saved game feature is currently not available!")
             elif option == 3:
-                print("Suck my nuts")
+                print("High score feature is currently not available!")
             elif option == 0:
                 print("You have exited the game :)")
                 break
