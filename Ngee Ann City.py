@@ -5,7 +5,7 @@ import random
 def range_char(start, stop):
     return (chr(n) for n in range(ord(start), ord(stop) + 1))
 
-def new_game(grid, coins):
+def new_game(grid, coins, turns):
     while coins != 0:
         #Randomly selected buildings to play game with
         choice1 = rand_pool(building_list)
@@ -28,14 +28,20 @@ def new_game(grid, coins):
         #If statement to 
         if menu_choice == "1":
             build_building(grid, choice1, turns)
-        if menu_choice == "2":
+            coins -= 1
+            turns += 1
+        elif menu_choice == "2":
             build_building(grid, choice2, turns)
+            coins += 1
+            turns += 1
         elif menu_choice == "3":
             print("Amount of coins remainding: {}".format(coins) )
         elif menu_choice == "4":
             print("See current score feature is currently not available")   
         elif menu_choice == "5":
             print("Save game feature is currently not available")   
+        elif menu_choice == "6":
+            print("Number of turn took {}".format(turns))  
         elif menu_choice == "0":
             break
         else:
@@ -62,8 +68,9 @@ def build_building(grid, build_choice, turns):
                     grid[row][col] = build_choice #Build choice is string value
                     break
 
-                #Help to check if building is built
+                #If a build has already been built in the grid
                 elif turns > 0:
+                    #Find if new plot that is gonna be built is connected (adjacent)
                     nxt_buildings = []
                     if row != 0:
                         nxt_buildings.append(grid[row-1][col])
@@ -83,10 +90,10 @@ def build_building(grid, build_choice, turns):
                             grid[row][col] = build_choice
                             print()
                             break
+                        else:
+                            print('Square is unavailable!')
                     else:
-                        print('Square is unavailable!')
-                else:
-                    print("You must build next to an existing building.")
+                        print("You must build next to an existing building!")
             else:
                 print("Input is not within grid, please re-enter valid plot!")
         else:
@@ -165,7 +172,7 @@ if __name__ == "__main__":
         if option:
             option = int(option)
             if option == 1:
-                new_game(grid, coins)
+                new_game(grid, coins, turns)
             elif option == 2:
                 print("Load saved game feature is currently not available!")
             elif option == 3:
