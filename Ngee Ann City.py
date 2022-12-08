@@ -40,8 +40,6 @@ def new_game(grid, coins, turns):
             print("See current score feature is currently not available")   
         elif menu_choice == "5":
             print("Save game feature is currently not available")   
-        elif menu_choice == "6":
-            print("Number of turn took {}".format(turns))  
         elif menu_choice == "0":
             break
         else:
