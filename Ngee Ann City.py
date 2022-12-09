@@ -28,12 +28,16 @@ def new_game(grid, coins, turns):
         #If statement to 
         if menu_choice == "1":
             build_building(grid, choice1, turns)
-            coins -= 1
+            if choice1 == ' I ' or choice1 == ' C ':
+                coins += 1
             turns += 1
+            coins -= 1
         elif menu_choice == "2":
             build_building(grid, choice2, turns)
-            coins += 1
+            if choice1 == ' I ' or choice1 == ' C ':
+                coins += 1
             turns += 1
+            coins -= 1
         elif menu_choice == "3":
             print("Amount of coins remainding: {}".format(coins) )
         elif menu_choice == "4":
