@@ -179,6 +179,8 @@ if __name__ == "__main__":
                 print("Load saved game feature is currently not available!")
             elif option == 3:
                 print("High score feature is currently not available!")
+            elif option == 4:
+                print(grid)
             elif option == 0:
                 print("You have exited the game :)")
                 break
